@@ -4,48 +4,44 @@
 
 @layer base {
   :root {
-    --background: 220 20% 6%;
-    --foreground: 200 20% 92%;
+    --background: 45 30% 97%;
+    --foreground: 35 25% 12%;
 
-    --card: 220 18% 9%;
-    --card-foreground: 200 20% 92%;
+    --card: 0 0% 100%;
+    --card-foreground: 35 25% 12%;
 
-    --popover: 220 18% 9%;
-    --popover-foreground: 200 20% 92%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 35 25% 12%;
 
-    --primary: 175 80% 50%;
-    --primary-foreground: 220 20% 6%;
+    --primary: 45 95% 50%;
+    --primary-foreground: 35 25% 10%;
 
-    --secondary: 220 15% 14%;
-    --secondary-foreground: 200 20% 92%;
+    --secondary: 44 30% 93%;
+    --secondary-foreground: 35 25% 20%;
 
-    --muted: 220 15% 14%;
-    --muted-foreground: 200 10% 55%;
+    --muted: 44 20% 92%;
+    --muted-foreground: 35 15% 50%;
 
-    --accent: 280 70% 60%;
-    --accent-foreground: 200 20% 92%;
+    --accent: 38 95% 55%;
+    --accent-foreground: 35 25% 10%;
 
-    --destructive: 0 70% 50%;
-    --destructive-foreground: 200 20% 92%;
+    --destructive: 0 70% 55%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 220 15% 16%;
-    --input: 220 15% 14%;
-    --ring: 175 80% 50%;
+    --border: 44 20% 87%;
+    --input: 44 20% 90%;
+    --ring: 45 95% 50%;
 
-    --radius: 0.75rem;
+    --radius: 0.875rem;
 
-    --neon: 175 80% 50%;
-    --neon-purple: 280 70% 60%;
-    --neon-pink: 320 80% 60%;
-
-    --sidebar-background: 220 20% 6%;
-    --sidebar-foreground: 200 20% 92%;
-    --sidebar-primary: 175 80% 50%;
-    --sidebar-primary-foreground: 220 20% 6%;
-    --sidebar-accent: 220 15% 14%;
-    --sidebar-accent-foreground: 200 20% 92%;
-    --sidebar-border: 220 15% 16%;
-    --sidebar-ring: 175 80% 50%;
+    --sidebar-background: 0 0% 100%;
+    --sidebar-foreground: 35 25% 12%;
+    --sidebar-primary: 45 95% 50%;
+    --sidebar-primary-foreground: 35 25% 10%;
+    --sidebar-accent: 44 30% 93%;
+    --sidebar-accent-foreground: 35 25% 12%;
+    --sidebar-border: 44 20% 87%;
+    --sidebar-ring: 45 95% 50%;
   }
 }
 
@@ -53,143 +49,80 @@
   * {
     @apply border-border;
   }
-
   body {
     @apply bg-background text-foreground;
     font-family: "Golos Text", sans-serif;
   }
 }
 
-/* Noise texture overlay */
-body::before {
-  content: "";
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
-  pointer-events: none;
-  z-index: 9999;
-  opacity: 0.4;
-}
-
-/* Neon glow utilities */
-.glow-cyan {
-  text-shadow:
-    0 0 20px hsl(175 80% 50% / 0.8),
-    0 0 40px hsl(175 80% 50% / 0.4);
-}
-.glow-purple {
-  text-shadow:
-    0 0 20px hsl(280 70% 60% / 0.8),
-    0 0 40px hsl(280 70% 60% / 0.4);
-}
-.glow-box-cyan {
-  box-shadow:
-    0 0 15px hsl(175 80% 50% / 0.3),
-    0 0 40px hsl(175 80% 50% / 0.1),
-    inset 0 0 15px hsl(175 80% 50% / 0.05);
-}
-.glow-box-purple {
-  box-shadow:
-    0 0 15px hsl(280 70% 60% / 0.3),
-    0 0 40px hsl(280 70% 60% / 0.1);
-}
-
-/* Grid background */
-.grid-bg {
-  background-image:
-    linear-gradient(hsl(175 80% 50% / 0.04) 1px, transparent 1px),
-    linear-gradient(90deg, hsl(175 80% 50% / 0.04) 1px, transparent 1px);
-  background-size: 40px 40px;
-}
-
-/* Scan line effect */
-@keyframes scan {
-  0% {
-    transform: translateY(-100%);
-  }
-  100% {
-    transform: translateY(100vh);
-  }
-}
-
-.scan-line {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 2px;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    hsl(175 80% 50% / 0.3),
-    transparent
+/* Subtle dot pattern */
+.dot-bg {
+  background-image: radial-gradient(
+    circle,
+    hsl(45 95% 50% / 0.12) 1px,
+    transparent 1px
   );
-  animation: scan 8s linear infinite;
-  pointer-events: none;
-  z-index: 100;
+  background-size: 28px 28px;
 }
 
-/* Cipher card */
-.cipher-card {
-  background: hsl(220 18% 9%);
-  border: 1px solid hsl(220 15% 16%);
+/* TEMK card */
+.temk-card {
+  background: hsl(0 0% 100%);
+  border: 1.5px solid hsl(44 20% 87%);
   border-radius: var(--radius);
-  transition: all 0.3s ease;
+  transition: all 0.25s ease;
 }
-.cipher-card:hover {
-  border-color: hsl(175 80% 50% / 0.3);
-  box-shadow: 0 0 20px hsl(175 80% 50% / 0.05);
-}
-
-/* Encrypted badge */
-.enc-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  font-size: 10px;
-  letter-spacing: 0.1em;
-  padding: 2px 8px;
-  border-radius: 100px;
-  background: hsl(175 80% 50% / 0.1);
-  border: 1px solid hsl(175 80% 50% / 0.3);
-  color: hsl(175 80% 50%);
-  font-family: "Golos Text", sans-serif;
-  font-weight: 600;
-  text-transform: uppercase;
+.temk-card:hover {
+  border-color: hsl(45 95% 50% / 0.6);
+  box-shadow: 0 4px 24px hsl(45 95% 50% / 0.12);
 }
 
-/* Nav item active */
+/* Nav item */
 .nav-item {
   display: flex;
   align-items: center;
   gap: 12px;
   padding: 10px 16px;
   border-radius: var(--radius);
-  color: hsl(200 10% 55%);
+  color: hsl(35 15% 50%);
   cursor: pointer;
   transition: all 0.2s ease;
   font-size: 14px;
   font-weight: 500;
+  width: 100%;
 }
 .nav-item:hover {
-  background: hsl(220 15% 14%);
-  color: hsl(200 20% 92%);
+  background: hsl(44 30% 93%);
+  color: hsl(35 25% 12%);
 }
 .nav-item.active {
-  background: hsl(175 80% 50% / 0.1);
-  color: hsl(175 80% 50%);
-  border: 1px solid hsl(175 80% 50% / 0.2);
+  background: hsl(45 95% 50%);
+  color: hsl(35 25% 10%);
+  font-weight: 600;
 }
 
 /* Avatar ring */
 .avatar-ring {
-  border: 2px solid transparent;
+  border: 2.5px solid transparent;
   background:
-    linear-gradient(hsl(220 18% 9%), hsl(220 18% 9%)) padding-box,
-    linear-gradient(135deg, hsl(175 80% 50%), hsl(280 70% 60%)) border-box;
+    linear-gradient(white, white) padding-box,
+    linear-gradient(135deg, hsl(45 95% 50%), hsl(38 95% 55%)) border-box;
+}
+
+/* Yellow badge */
+.temk-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  padding: 2px 8px;
+  border-radius: 100px;
+  background: hsl(45 95% 50% / 0.15);
+  border: 1px solid hsl(45 95% 50% / 0.5);
+  color: hsl(38 80% 32%);
+  font-weight: 600;
+  text-transform: uppercase;
 }
 
 /* Scrollbar */
@@ -197,14 +130,14 @@ body::before {
   width: 4px;
 }
 ::-webkit-scrollbar-track {
-  background: hsl(220 20% 6%);
+  background: hsl(44 20% 95%);
 }
 ::-webkit-scrollbar-thumb {
-  background: hsl(220 15% 20%);
+  background: hsl(45 95% 75%);
   border-radius: 2px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: hsl(175 80% 50% / 0.5);
+  background: hsl(45 95% 55%);
 }
 
 /* Animations */
@@ -218,35 +151,50 @@ body::before {
     transform: translateY(0);
   }
 }
-@keyframes pulse-glow {
-  0%,
-  100% {
-    box-shadow: 0 0 8px hsl(175 80% 50% / 0.4);
+@keyframes scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.94);
   }
-  50% {
-    box-shadow:
-      0 0 20px hsl(175 80% 50% / 0.8),
-      0 0 40px hsl(175 80% 50% / 0.3);
+  to {
+    opacity: 1;
+    transform: scale(1);
   }
 }
-@keyframes blink {
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes ring-pulse {
   0%,
   100% {
-    opacity: 1;
+    box-shadow: 0 0 0 0 hsl(45 95% 50% / 0.5);
   }
   50% {
-    opacity: 0;
+    box-shadow: 0 0 0 14px hsl(45 95% 50% / 0);
   }
 }
 
 .animate-fade-in {
-  animation: fade-in 0.4s ease forwards;
+  animation: fade-in 0.35s ease forwards;
+  opacity: 0;
 }
-.animate-pulse-glow {
-  animation: pulse-glow 2s ease-in-out infinite;
+.animate-scale-in {
+  animation: scale-in 0.25s ease forwards;
+  opacity: 0;
 }
-.blink {
-  animation: blink 1s step-end infinite;
+.animate-slide-up {
+  animation: slide-up 0.4s ease forwards;
+  opacity: 0;
+}
+.animate-ring-pulse {
+  animation: ring-pulse 1.5s ease-in-out infinite;
 }
 
 .stagger-1 {

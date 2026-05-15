@@ -77,7 +77,7 @@ export default function Search() {
           {/* Trending */}
           <div className="mb-6 animate-fade-in stagger-3">
             <h3 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-3">В тренде</h3>
-            <div className="cipher-card overflow-hidden">
+            <div className="temk-card overflow-hidden">
               {TRENDING.map((item, i) => (
                 <button
                   key={i}
@@ -131,7 +131,7 @@ function UserCard({ user, following, onFollow, index }: {
   index: number;
 }) {
   return (
-    <div className={`cipher-card p-4 flex items-center gap-3 animate-fade-in stagger-${Math.min(index + 1, 5)}`}>
+    <div className={`temk-card p-4 flex items-center gap-3 animate-fade-in stagger-${Math.min(index + 1, 5)}`}>
       <div className="w-11 h-11 rounded-full avatar-ring flex-shrink-0">
         <div className={`w-full h-full rounded-full bg-gradient-to-br ${user.color} flex items-center justify-center text-sm font-bold text-foreground`}>{user.initials}</div>
       </div>
@@ -152,7 +152,7 @@ function UserCard({ user, following, onFollow, index }: {
         className={`flex-shrink-0 px-3 py-1.5 rounded-lg text-xs font-medium transition-colors ${
           following
             ? 'bg-secondary text-muted-foreground hover:bg-destructive/10 hover:text-destructive border border-border'
-            : 'bg-primary text-primary-foreground hover:bg-primary/90 glow-box-cyan'
+            : 'bg-primary text-primary-foreground hover:bg-primary/90'
         }`}
       >
         {following ? 'Отписаться' : 'Подписаться'}

@@ -76,7 +76,7 @@ export default function Feed() {
       {activeView === 'feed' ? (
         <>
           {/* Compose */}
-          <div className="cipher-card p-4 mb-4 animate-fade-in stagger-1">
+          <div className="temk-card p-4 mb-4 animate-fade-in stagger-1">
             <div className="flex gap-3">
               <div className="w-9 h-9 rounded-full avatar-ring flex-shrink-0">
                 <div className="w-full h-full rounded-full bg-gradient-to-br from-primary/40 to-accent/40 flex items-center justify-center text-sm font-bold text-primary">АК</div>
@@ -102,11 +102,11 @@ export default function Feed() {
                     </button>
                   </div>
                   <div className="flex items-center gap-2">
-                    <span className="enc-badge">
+                    <span className="temk-badge">
                       <Icon name="Lock" size={10} />
                       Зашифровано
                     </span>
-                    <button className="px-4 py-1.5 bg-primary text-primary-foreground text-xs font-semibold rounded-lg hover:bg-primary/90 transition-colors glow-box-cyan">
+                    <button className="px-4 py-1.5 bg-primary text-primary-foreground text-xs font-semibold rounded-lg hover:bg-primary/90 transition-colors">
                       Опубликовать
                     </button>
                   </div>
@@ -117,7 +117,7 @@ export default function Feed() {
 
           {/* Posts */}
           {POSTS.map((post, i) => (
-            <div key={post.id} className={`cipher-card p-5 mb-3 animate-fade-in stagger-${i + 2}`}>
+            <div key={post.id} className={`temk-card p-5 mb-3 animate-fade-in stagger-${i + 2}`}>
               <div className="flex gap-3">
                 <div className="w-10 h-10 rounded-full avatar-ring flex-shrink-0">
                   <div className={`w-full h-full rounded-full bg-gradient-to-br ${post.user.color} flex items-center justify-center text-sm font-bold text-foreground`}>
@@ -132,7 +132,7 @@ export default function Feed() {
                     </div>
                     <div className="flex items-center gap-2 flex-shrink-0">
                       {post.encrypted && (
-                        <span className="enc-badge">
+                        <span className="temk-badge">
                           <Icon name="Lock" size={9} />
                           E2E
                         </span>
@@ -177,7 +177,7 @@ export default function Feed() {
       ) : (
         <div className="space-y-2 animate-fade-in">
           {ACTIVITY.map((act, i) => (
-            <div key={i} className={`cipher-card p-4 flex items-center gap-4 stagger-${i + 1}`}>
+            <div key={i} className={`temk-card p-4 flex items-center gap-4 stagger-${i + 1}`}>
               <div className={`w-9 h-9 rounded-full bg-secondary flex items-center justify-center ${act.color}`}>
                 <Icon name={act.icon} size={16} />
               </div>

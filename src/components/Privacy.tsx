@@ -65,7 +65,7 @@ export default function Privacy() {
       <h2 className="text-2xl font-cormorant font-semibold mb-5 animate-fade-in">Приватность и безопасность</h2>
 
       {/* Security score */}
-      <div className="cipher-card p-5 mb-5 animate-fade-in stagger-1 glow-box-cyan relative overflow-hidden">
+      <div className="temk-card p-5 mb-5 animate-fade-in stagger-1 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent" />
         <div className="relative flex items-center gap-5">
           <div className="relative w-20 h-20 flex-shrink-0">
@@ -96,11 +96,11 @@ export default function Privacy() {
                 : 'Включите дополнительные параметры безопасности для лучшей защиты.'}
             </p>
             <div className="flex items-center gap-2 mt-2">
-              <span className="enc-badge">
+              <span className="temk-badge">
                 <Icon name="Shield" size={9} />
                 AES-256
               </span>
-              <span className="enc-badge">
+              <span className="temk-badge">
                 <Icon name="Key" size={9} />
                 RSA-4096
               </span>
@@ -116,7 +116,7 @@ export default function Privacy() {
             <Icon name={section.icon} size={14} className={section.color} />
             <h3 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">{section.title}</h3>
           </div>
-          <div className="cipher-card overflow-hidden">
+          <div className="temk-card overflow-hidden">
             {section.settings.map((item, i) => (
               <div
                 key={item.id}
@@ -129,7 +129,7 @@ export default function Privacy() {
                   <div className="flex items-center gap-2">
                     <p className="text-sm font-medium text-foreground">{item.title}</p>
                     {item.critical && (
-                      <span className="enc-badge" style={{ fontSize: '9px' }}>критично</span>
+                      <span className="temk-badge" style={{ fontSize: '9px' }}>критично</span>
                     )}
                   </div>
                   <p className="text-xs text-muted-foreground mt-0.5 leading-relaxed">{item.desc}</p>
@@ -155,7 +155,7 @@ export default function Privacy() {
       ))}
 
       {/* Danger zone */}
-      <div className="cipher-card border-destructive/20 animate-fade-in stagger-5 mt-4">
+      <div className="temk-card border-destructive/20 animate-fade-in stagger-5 mt-4">
         <div className="p-4 border-b border-border/50">
           <div className="flex items-center gap-2 mb-1">
             <Icon name="AlertTriangle" size={14} className="text-destructive" />

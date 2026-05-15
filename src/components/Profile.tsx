@@ -16,8 +16,8 @@ export default function Profile() {
   return (
     <div className="max-w-2xl mx-auto px-4 py-6">
       {/* Cover + Avatar */}
-      <div className="cipher-card overflow-hidden mb-4 animate-fade-in">
-        <div className="h-32 bg-gradient-to-br from-primary/20 via-accent/20 to-neon-pink/20 relative">
+      <div className="temk-card overflow-hidden mb-4 animate-fade-in">
+        <div className="h-32 bg-gradient-to-br from-yellow-100 via-amber-50 to-orange-50 relative">
           <div className="absolute inset-0 grid-bg opacity-50" />
           <div
             className="absolute inset-0"
@@ -39,7 +39,7 @@ export default function Profile() {
               <button className="px-4 py-1.5 text-xs font-medium border border-border rounded-lg text-muted-foreground hover:text-foreground hover:border-primary/50 transition-colors">
                 Редактировать
               </button>
-              <button className="px-4 py-1.5 text-xs font-medium bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors glow-box-cyan">
+              <button className="px-4 py-1.5 text-xs font-medium bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors">
                 Поделиться
               </button>
             </div>
@@ -81,7 +81,7 @@ export default function Profile() {
       {/* Badges */}
       <div className="flex gap-2 mb-4 animate-fade-in stagger-1 flex-wrap">
         {['Верифицирован', 'E2E активен', 'Без трекинга', 'Анон. режим'].map((badge, i) => (
-          <span key={i} className="enc-badge">{badge}</span>
+          <span key={i} className="temk-badge">{badge}</span>
         ))}
       </div>
 
@@ -89,7 +89,7 @@ export default function Profile() {
       <h3 className="text-sm font-medium text-muted-foreground mb-3 animate-fade-in stagger-2">Публикации</h3>
       <div className="space-y-3">
         {POSTS.map((post, i) => (
-          <div key={post.id} className={`cipher-card p-4 animate-fade-in stagger-${i + 3}`}>
+          <div key={post.id} className={`temk-card p-4 animate-fade-in stagger-${i + 3}`}>
             <p className="text-sm text-foreground/90 leading-relaxed mb-3">{post.text}</p>
             <div className="flex items-center gap-5 text-xs text-muted-foreground">
               <button className="flex items-center gap-1 hover:text-neon-pink transition-colors">
