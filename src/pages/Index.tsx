@@ -5,9 +5,12 @@ import Profile from '@/components/Profile';
 import Messages from '@/components/Messages';
 import Search from '@/components/Search';
 import Privacy from '@/components/Privacy';
+import VideoTab from '@/components/VideoTab';
+import MusicTab from '@/components/MusicTab';
+import GamesTab from '@/components/GamesTab';
 import Icon from '@/components/ui/icon';
 
-type Tab = 'feed' | 'profile' | 'messages' | 'search' | 'privacy';
+type Tab = 'feed' | 'search' | 'messages' | 'video' | 'music' | 'games' | 'profile' | 'privacy';
 
 interface User {
   name: string;
@@ -15,13 +18,19 @@ interface User {
   handle: string;
 }
 
-const NAV_ITEMS = [
-  { id: 'feed' as Tab, icon: 'Layers', label: 'Лента' },
-  { id: 'search' as Tab, icon: 'Search', label: 'Поиск' },
-  { id: 'messages' as Tab, icon: 'MessageSquare', label: 'Сообщения' },
-  { id: 'profile' as Tab, icon: 'User', label: 'Профиль' },
-  { id: 'privacy' as Tab, icon: 'Shield', label: 'Безопасность' },
+const NAV_ITEMS: { id: Tab; icon: string; label: string; badge?: string }[] = [
+  { id: 'feed', icon: 'Layers', label: 'Лента' },
+  { id: 'search', icon: 'Search', label: 'Поиск' },
+  { id: 'messages', icon: 'MessageSquare', label: 'Сообщения', badge: '3' },
+  { id: 'video', icon: 'Play', label: 'Видео' },
+  { id: 'music', icon: 'Music', label: 'Музыка' },
+  { id: 'games', icon: 'Gamepad2', label: 'Игры' },
+  { id: 'profile', icon: 'User', label: 'Профиль' },
+  { id: 'privacy', icon: 'Shield', label: 'Безопасность' },
 ];
+
+// Only these tabs appear in mobile bottom nav (5 max)
+const MOBILE_NAV: Tab[] = ['feed', 'search', 'messages', 'video', 'music'];
 
 export default function Index() {
   const [user, setUser] = useState<User | null>(null);
@@ -49,7 +58,7 @@ export default function Index() {
           </div>
         </div>
 
-        <nav className="flex-1 p-4 space-y-1">
+        <nav className="flex-1 p-4 space-y-0.5 overflow-y-auto">
           {NAV_ITEMS.map((item) => (
             <button
               key={item.id}
@@ -58,8 +67,10 @@ export default function Index() {
             >
               <Icon name={item.icon} size={18} />
               <span>{item.label}</span>
-              {item.id === 'messages' && (
-                <span className="ml-auto w-5 h-5 rounded-full bg-foreground text-background text-xs flex items-center justify-center font-bold">3</span>
+              {item.badge && (
+                <span className="ml-auto w-5 h-5 rounded-full bg-foreground text-background text-xs flex items-center justify-center font-bold">
+                  {item.badge}
+                </span>
               )}
             </button>
           ))}
@@ -76,9 +87,11 @@ export default function Index() {
         </div>
 
         <div className="p-4 border-t border-border">
-          <div className="flex items-center gap-3 p-3 rounded-xl bg-secondary/60 cursor-pointer hover:bg-secondary transition-colors">
+          <div className="flex items-center gap-3 p-3 rounded-xl bg-secondary/60 hover:bg-secondary transition-colors">
             <div className="w-9 h-9 rounded-full avatar-ring flex-shrink-0">
-              <div className="w-full h-full rounded-full bg-gradient-to-br from-yellow-300/60 to-amber-400/60 flex items-center justify-center text-sm font-bold text-amber-800">{initials}</div>
+              <div className="w-full h-full rounded-full bg-gradient-to-br from-yellow-300/60 to-amber-400/60 flex items-center justify-center text-sm font-bold text-amber-800">
+                {initials}
+              </div>
             </div>
             <div className="flex-1 min-w-0">
               <p className="text-sm font-medium truncate text-foreground">{user.name}</p>
@@ -95,30 +108,64 @@ export default function Index() {
         </div>
       </aside>
 
+      {/* Main */}
       <main className="flex-1 md:ml-64 pb-20 md:pb-0">
         {activeTab === 'feed' && <Feed />}
         {activeTab === 'profile' && <Profile />}
         {activeTab === 'messages' && <Messages />}
         {activeTab === 'search' && <Search />}
         {activeTab === 'privacy' && <Privacy />}
+        {activeTab === 'video' && <VideoTab />}
+        {activeTab === 'music' && <MusicTab />}
+        {activeTab === 'games' && <GamesTab />}
       </main>
 
-      <nav className="md:hidden fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur-md border-t border-border z-40 flex shadow-lg">
-        {NAV_ITEMS.map((item) => (
-          <button
-            key={item.id}
-            onClick={() => setActiveTab(item.id)}
-            className={`flex-1 flex flex-col items-center gap-1 py-3 text-xs transition-colors relative ${
-              activeTab === item.id ? 'text-primary font-medium' : 'text-muted-foreground'
-            }`}
-          >
-            {activeTab === item.id && (
-              <span className="absolute top-0 left-1/2 -translate-x-1/2 w-8 h-0.5 bg-primary rounded-full" />
-            )}
-            <Icon name={item.icon} size={20} />
-            <span>{item.label}</span>
-          </button>
-        ))}
+      {/* Mobile bottom nav — 5 main tabs + more button */}
+      <nav className="md:hidden fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur-md border-t border-border z-40 shadow-lg">
+        <div className="flex">
+          {MOBILE_NAV.map((tabId) => {
+            const item = NAV_ITEMS.find(n => n.id === tabId)!;
+            return (
+              <button
+                key={item.id}
+                onClick={() => setActiveTab(item.id)}
+                className={`flex-1 flex flex-col items-center gap-0.5 py-2.5 text-[10px] transition-colors relative ${
+                  activeTab === item.id ? 'text-primary font-medium' : 'text-muted-foreground'
+                }`}
+              >
+                {activeTab === item.id && (
+                  <span className="absolute top-0 left-1/2 -translate-x-1/2 w-8 h-0.5 bg-primary rounded-full" />
+                )}
+                <Icon name={item.icon} size={19} />
+                <span>{item.label}</span>
+              </button>
+            );
+          })}
+          {/* More menu */}
+          <div className="flex-1 relative group">
+            <button className={`w-full flex flex-col items-center gap-0.5 py-2.5 text-[10px] transition-colors ${
+              !MOBILE_NAV.includes(activeTab) ? 'text-primary font-medium' : 'text-muted-foreground'
+            }`}>
+              {!MOBILE_NAV.includes(activeTab) && (
+                <span className="absolute top-0 left-1/2 -translate-x-1/2 w-8 h-0.5 bg-primary rounded-full" />
+              )}
+              <Icon name="MoreHorizontal" size={19} />
+              <span>Ещё</span>
+            </button>
+            <div className="absolute bottom-full right-0 mb-1 bg-white border border-border rounded-xl shadow-xl overflow-hidden hidden group-focus-within:block w-40">
+              {NAV_ITEMS.filter(n => !MOBILE_NAV.includes(n.id)).map(item => (
+                <button
+                  key={item.id}
+                  onClick={() => setActiveTab(item.id)}
+                  className={`w-full flex items-center gap-2.5 px-4 py-3 text-sm hover:bg-secondary transition-colors ${activeTab === item.id ? 'text-primary font-medium' : 'text-foreground'}`}
+                >
+                  <Icon name={item.icon} size={16} />
+                  {item.label}
+                </button>
+              ))}
+            </div>
+          </div>
+        </div>
       </nav>
     </div>
   );
