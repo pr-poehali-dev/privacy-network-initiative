@@ -117,7 +117,7 @@ export default function Privacy() {
             <h3 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">{section.title}</h3>
           </div>
           <div className="temk-card overflow-hidden">
-            {section.settings.map((item, i) => (
+            {section.settings.map((item) => (
               <div
                 key={item.id}
                 className={`flex items-start gap-4 p-4 border-b border-border/50 last:border-b-0 ${item.critical && settings[item.id] ? 'opacity-100' : ''}`}
