@@ -8,9 +8,10 @@ import Privacy from '@/components/Privacy';
 import VideoTab from '@/components/VideoTab';
 import MusicTab from '@/components/MusicTab';
 import GamesTab from '@/components/GamesTab';
+import CatsTab from '@/components/CatsTab';
 import Icon from '@/components/ui/icon';
 
-type Tab = 'feed' | 'search' | 'messages' | 'video' | 'music' | 'games' | 'profile' | 'privacy';
+type Tab = 'feed' | 'search' | 'messages' | 'video' | 'music' | 'games' | 'cats' | 'profile' | 'privacy';
 
 interface User {
   name: string;
@@ -25,6 +26,7 @@ const NAV_ITEMS: { id: Tab; icon: string; label: string; badge?: string }[] = [
   { id: 'video', icon: 'Play', label: 'Видео' },
   { id: 'music', icon: 'Music', label: 'Музыка' },
   { id: 'games', icon: 'Gamepad2', label: 'Игры' },
+  { id: 'cats', icon: 'Cat', label: 'Котики' },
   { id: 'profile', icon: 'User', label: 'Профиль' },
   { id: 'privacy', icon: 'Shield', label: 'Безопасность' },
 ];
@@ -118,6 +120,7 @@ export default function Index() {
         {activeTab === 'video' && <VideoTab />}
         {activeTab === 'music' && <MusicTab />}
         {activeTab === 'games' && <GamesTab />}
+        {activeTab === 'cats' && <CatsTab />}
       </main>
 
       {/* Mobile bottom nav — 5 main tabs + more button */}
